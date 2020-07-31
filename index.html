@@ -6,22 +6,44 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 </head>
 <body>
-  <header id="title" class="row">
-    <h1 class="col-sm-8">Student Grade Table</h1>
-    <h2 class="col-sm-4">Average Grade <span class="badge badge-secondary"></span></h2>
-  </header>
-  <table class="table table-dark table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Student Name</th>
-        <th>Course</th>
-        <th>Grade</th>
-      </tr>
-    </thead>
-    <tbody id="table-body"></tbody>
-  </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <header id="title">
+          <h1>Student Grade Table</h1>
+        </header>
+        <table class="table table-dark table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Course</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <h2>Average Grade <span class="badge badge-secondary"></span></h2>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Course">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Grade">
+        </div>
+        <div class="float-right">
+          <button type="submit">Add</button>
+          <button type="reset">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
   <script src="components/app.js"></script>
   <script src="components/grade-table.js"></script>
