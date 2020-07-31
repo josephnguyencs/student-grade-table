@@ -5,7 +5,6 @@ class GradeTable {
   }
   updateGrades(grades) {
     this.tableElement.innerHTML = ""
-    console.log(this.tableElement)
     for (var i=0; i<grades.length; i++) {
       this.renderGradeRow(grades[i], this.deleteGrade)
     }
