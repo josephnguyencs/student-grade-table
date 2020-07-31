@@ -1,22 +1,44 @@
 class GradeTable {
-  constructor(tableElement) {
+  constructor(tableElement, noGradesElement) {
     this.tableElement = tableElement
+    this.noGradesElement = noGradesElement
   }
   updateGrades(grades) {
-    console.log(grades)
-    this.tableElement.innerhtml = ""
+    this.tableElement.innerHTML = ""
+    console.log(this.tableElement)
     for (var i=0; i<grades.length; i++) {
-      var tableRow = document.createElement("tr")
-      document.getElementById("table-body").appendChild(tableRow)
-      var studentName = document.createElement("td")
-      studentName.textContent = grades[i].name
-      tableRow.appendChild(studentName)
-      var courseName = document.createElement("td")
-      courseName.textContent = grades[i].course
-      tableRow.appendChild(courseName)
-      var courseGrade = document.createElement("td")
-      courseGrade.textContent = grades[i].grade
-      tableRow.appendChild(courseGrade)
+      this.renderGradeRow(grades[i], this.deleteGrade)
     }
+    var noGradesRecorded = document.getElementById("no-grades-recorded")
+    if (grades.length === 0) {
+      noGradesRecorded.classList.remove("d-none")
+    } else {
+      noGradesRecorded.classList.add("d-none")
+    }
+  }
+  onDeleteClick(deleteGrade) {
+    this.deleteGrade = deleteGrade
+  }
+  renderGradeRow(data, deleteGrade) {
+    var tableRow = document.createElement("tr")
+    document.getElementById("table-body").appendChild(tableRow)
+    var studentName = document.createElement("td")
+    studentName.textContent = data.name
+    tableRow.appendChild(studentName)
+    var courseName = document.createElement("td")
+    courseName.textContent = data.course
+    tableRow.appendChild(courseName)
+    var courseGrade = document.createElement("td")
+    courseGrade.textContent = data.grade
+    tableRow.appendChild(courseGrade)
+    var deleteButtonTd = document.createElement("td")
+    var deleteButton = document.createElement("button")
+    deleteButtonTd.appendChild(deleteButton)
+    tableRow.appendChild(deleteButtonTd)
+    deleteButton.textContent = "DELETE"
+    deleteButton.addEventListener("click", function() {
+      deleteGrade(data.id)
+    })
+    return tableRow
   }
 }
