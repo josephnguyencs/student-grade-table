@@ -1,4 +1,6 @@
 var table = document.getElementById("table-body")
+var heading = document.getElementById("title")
+var pageHeader = new PageHeader(heading)
 var gradeTable = new GradeTable(table)
-var app = new App(gradeTable)
+var app = new App(gradeTable, pageHeader)
 app.start()
