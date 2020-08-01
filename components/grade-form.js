@@ -17,7 +17,6 @@ class GradeForm {
     var grade = parseInt(formData.get('grade'))
     this.createGrade(name, course, grade)
     event.target.reset()
-    console.log(name)
   }
   handleCancel() {
     document.getElementById("nameID").textContent = ""
