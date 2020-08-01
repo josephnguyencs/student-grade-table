@@ -5,9 +5,8 @@ class GradeTable {
   }
   updateGrades(grades) {
     this.tableElement.innerHTML = ""
-    console.log(this.tableElement)
     for (var i=0; i<grades.length; i++) {
-      this.renderGradeRow(grades[i], this.deleteGrade)
+      this.renderGradeRow(grades[i], this.deleteGrade, this.updateGrade)
     }
     var noGradesRecorded = document.getElementById("no-grades-recorded")
     if (grades.length === 0) {
@@ -19,7 +18,10 @@ class GradeTable {
   onDeleteClick(deleteGrade) {
     this.deleteGrade = deleteGrade
   }
-  renderGradeRow(data, deleteGrade) {
+  onUpdateClick(updateGrade) {
+    this.updateGrade = updateGrade
+  }
+  renderGradeRow(data, deleteGrade, updateGrade) {
     var tableRow = document.createElement("tr")
     document.getElementById("table-body").appendChild(tableRow)
     var studentName = document.createElement("td")
@@ -31,11 +33,17 @@ class GradeTable {
     var courseGrade = document.createElement("td")
     courseGrade.textContent = data.grade
     tableRow.appendChild(courseGrade)
-    var deleteButtonTd = document.createElement("td")
+    var buttonOperations = document.createElement("td")
     var deleteButton = document.createElement("button")
-    deleteButtonTd.appendChild(deleteButton)
-    tableRow.appendChild(deleteButtonTd)
+    var updateButton = document.createElement("button")
+    buttonOperations.appendChild(updateButton)
+    buttonOperations.appendChild(deleteButton)
+    tableRow.appendChild(buttonOperations)
+    updateButton.textContent = "UPDATE"
     deleteButton.textContent = "DELETE"
+    updateButton.addEventListener('click', function() {
+      updateGrade(data.id)
+    })
     deleteButton.addEventListener("click", function() {
       deleteGrade(data.id)
     })
